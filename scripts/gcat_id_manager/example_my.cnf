@@ -1,0 +1,6 @@
+[client]
+host = Your database server
+user = Your MySQL user
+port = Your MySQL server port number
+database = Your database name
+password = Yout database password
