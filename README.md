@@ -1,2 +1,2 @@
 # GCATIdManager
-Management toos for sample name and analysis ID (UUIDs).
+Management tools for sample name and analysis ID (UUIDs).
