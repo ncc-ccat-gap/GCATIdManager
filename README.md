@@ -8,6 +8,7 @@ It is designed for cancer genome analysis, but can be used for any system that n
 # Installation
 ## Setting MySQL server
 1. Install and configure MySQL Server 8 or higer. It is recommended to use Docker.
+
 https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html
 
 2. Access MySQL server as root.
@@ -20,21 +21,21 @@ mysql -u root -p
 CREATE DATABASE your_database;
 ```
 
-4. Create table. "sample_uuid" and "sample_name" colmuns required.
+4. Create table. "sample_uuid" and "sample_name" columns required.
 ```
 USE your_database;
 CREATE TABLE ID NOT EXISTS your_table(
     `id` INT NOT NULL AUTO_INCREMENT,
-    `sample_uuid` VATBINARY(16) NOT NULL,
+    `sample_uuid` VARBINARY(16) NOT NULL,
     `sample_name` VARCHAR(256) NOT NULL,
-    some other colmuns...
+    some other columns...
 );
 ```
 
 5. Create read-only user and set access privileges.
 ```
-CREATE USER your_user IDENTIFIED BY "your password";
-GRANTS SELECT ON your_database.* to "your_user"@"%";
+CREATE USER your_user IDENTIFIED BY "your_password";
+GRANTS SELECT ON your_database.* TO "your_user"@"%";
 ```
 
 ## Install G-CAT ID Manager
@@ -43,5 +44,5 @@ python setup.py install
 ```
 
 ## Requirement
-mysql (8 or later)
-pymysql
+* mysql-server (8 or later)
+* pymysql
