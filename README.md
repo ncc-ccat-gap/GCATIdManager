@@ -32,10 +32,16 @@ CREATE TABLE ID NOT EXISTS your_table(
 );
 ```
 
-5. Create read-only user and set access privileges.
+5. Create read-only user and set access privileges. This user is used to display the IDs and UUIDs. Note that the password should be set to something that can be shared within the system you are using.
 ```
 CREATE USER your_user IDENTIFIED BY "your_password";
 GRANTS SELECT ON your_database.* TO "your_user"@"%";
+```
+
+6. Create adimn user and set access privileges. This user is used to INSERT IDs and manage the databases. Note that this password will not be shared.
+```
+CREATE USER your_admin_user IDENTIFIED BY "your_admin_password";
+GRANTS * ON your_database.* TO "your_admin_user"@"%";
 ```
 
 ## Install G-CAT ID Manager
@@ -46,3 +52,47 @@ python setup.py install
 ## Requirement
 * mysql-server (8 or later)
 * pymysql
+
+# Usage
+## Insert ID into Database
+1. Access MySQL server as admin user.
+```
+mysql -u your_admin_user -p 
+```
+
+2. Insert the combination of readable ID and UUID. The following is an example of inserting the combination of redable ID "ID00001" and UUID "aaaaaaaa-1111-4bbb-2222-cccccccccccc". Note that the UUID must be converted from STRING to BINARY.
+```
+INSERT IGNORE INTO your_table (`sample_uuid`, `sample_name`) VALUES (UUID_TO_BIN("aaaaaaaa-1111-4bbb-2222-cccccccccccc"), "ID00001")
+```
+
+## Display ID 
+0. Write the connection informatino to MySQL in the config file.
+```
+cat example_my.cnf
+[client]
+host = Your database server
+user = Your MySQL user
+port = Your MySQL server port number
+database = Your database name
+password = Yout database password
+```
+
+You can connect to MySQL by specifying this file with `-c` option of the gcat_uuid command.
+```
+gcat_uuid -c example_my.cnf
+```
+
+If not spcefied `-c` option, `~/.my.cnf` will be used.
+If you do not want to write the password in the config file, you can use `-p` option to enter the password interactively 
+
+1. Convert UUID to readable ID.
+```
+gcat_uuid -c example_my.cnf -u aaaaaaaa-1111-4bbb-2222-cccccccccccc
+ID00001
+```
+
+2. Convert readable ID to UUID.
+```
+gcat_uuid -c example_my.cnf -n ID00001
+aaaaaaaa-1111-4bbb-2222-cccccccccccc
+```
