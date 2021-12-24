@@ -35,13 +35,13 @@ CREATE TABLE ID NOT EXISTS your_table(
 5. Create read-only user and set access privileges. This user is used to display the IDs and UUIDs. Note that the password should be set to something that can be shared within the system you are using.
 ```
 CREATE USER your_user IDENTIFIED BY "your_password";
-GRANTS SELECT ON your_database.* TO "your_user"@"%";
+GRANT SELECT ON your_database.* TO "your_user"@"%";
 ```
 
 6. Create adimn user and set access privileges. This user is used to INSERT IDs and manage the databases. Note that this password will not be shared.
 ```
 CREATE USER your_admin_user IDENTIFIED BY "your_admin_password";
-GRANTS * ON your_database.* TO "your_admin_user"@"%";
+GRANT ALL PRIVILAGES ON your_database.* TO "your_admin_user"@"%";
 ```
 
 ## Install G-CAT ID Manager
