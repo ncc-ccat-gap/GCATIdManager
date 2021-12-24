@@ -85,7 +85,7 @@ If not spcefied `-c` option, `~/.my.cnf` will be used.
 gcat_uuid -c example_my.cnf
 ```
 
-If you do not want to write the password in the config file, you can use `-p` option to enter the password interactively 
+If you do not want to write the password in the config file, you can use `-p` option to enter the password interactively.
 
 1. Convert UUID to readable ID.
 ```
