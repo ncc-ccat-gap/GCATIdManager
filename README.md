@@ -41,7 +41,7 @@ GRANT SELECT ON your_database.* TO "your_user"@"%";
 6. Create adimn user and set access privileges. This user is used to INSERT IDs and manage the databases. Note that this password will not be shared.
 ```
 CREATE USER your_admin_user IDENTIFIED BY "your_admin_password";
-GRANT ALL PRIVILAGES ON your_database.* TO "your_admin_user"@"%";
+GRANT ALL ON your_database.* TO "your_admin_user"@"%";
 ```
 
 ## Install G-CAT ID Manager
@@ -51,6 +51,7 @@ python setup.py install
 
 ## Requirement
 * mysql-server (8 or later)
+* Python 3.8
 * pymysql
 
 # Usage
@@ -62,7 +63,7 @@ mysql -u your_admin_user -p
 
 2. Insert the combination of readable ID and UUID. The following is an example of inserting the combination of redable ID "ID00001" and UUID "aaaaaaaa-1111-4bbb-2222-cccccccccccc". Note that the UUID must be converted from STRING to BINARY.
 ```
-INSERT IGNORE INTO your_table (`sample_uuid`, `sample_name`) VALUES (UUID_TO_BIN("aaaaaaaa-1111-4bbb-2222-cccccccccccc"), "ID00001")
+INSERT IGNORE INTO your_table (`sample_uuid`, `sample_name`) VALUES (UUID_TO_BIN("aaaaaaaa-1111-4bbb-2222-cccccccccccc"), "ID00001");
 ```
 
 ## Display ID 
