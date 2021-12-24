@@ -61,7 +61,8 @@ python setup.py install
 mysql -u your_admin_user -p 
 ```
 
-2. Insert the combination of readable ID and UUID. The following is an example of inserting the combination of redable ID "ID00001" and UUID "aaaaaaaa-1111-4bbb-2222-cccccccccccc". Note that the UUID must be converted from STRING to BINARY.
+2. Insert the combination of readable ID and UUID.
+The following is an example of inserting the combination of readable ID "ID00001" and UUID "aaaaaaaa-1111-4bbb-2222-cccccccccccc". Note that the UUID must be converted from STRING to BINARY.
 ```
 INSERT IGNORE INTO your_table (`sample_uuid`, `sample_name`) VALUES (UUID_TO_BIN("aaaaaaaa-1111-4bbb-2222-cccccccccccc"), "ID00001");
 ```
@@ -79,11 +80,11 @@ password = Yout database password
 ```
 
 You can connect to MySQL by specifying this file with `-c` option of the gcat_uuid command.
+If not spcefied `-c` option, `~/.my.cnf` will be used.
 ```
 gcat_uuid -c example_my.cnf
 ```
 
-If not spcefied `-c` option, `~/.my.cnf` will be used.
 If you do not want to write the password in the config file, you can use `-p` option to enter the password interactively 
 
 1. Convert UUID to readable ID.
