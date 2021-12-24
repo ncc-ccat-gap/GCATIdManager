@@ -27,7 +27,8 @@ def main():
     if args.uuid is None:
       result = get_uuid(args.name, 0, args.table, args.mysql_cnf, args.password,  all_flag)
     elif args.name is None:
-      result = get_uuid(args.uuid, 1, args.table, args.mysql_cnf, args.password, mysql_info)
+      result = get_uuid(args.uuid, 1, args.table, args.mysql_cnf, args.password)
+    print(result)
 
 # check_id: UUID or SAMPLE_NAME    
 # check_flag: 0=SAMPLE_NAME to UUID, 1=UUID to SAMPLE_NAME
